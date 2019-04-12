@@ -1,5 +1,5 @@
 {
-  "name": "mindbody",
+  "name": "mindbody-sdk",
   "version": "1.0.0",
   "description": "A Node.js client for the MINDBODY API",
   "main": "./lib/mindbody",
