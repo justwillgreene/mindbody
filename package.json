@@ -1,0 +1,24 @@
+{
+  "name": "mindbody",
+  "version": "1.0.0",
+  "description": "A Node.js client for the MINDBODY API",
+  "main": "./lib/mindbody",
+  "author": {
+    "name": "Will Greene",
+    "email": "william.greene15@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wmgreene/mindbody.git"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "svod",
+    "mindbody",
+    "sdk"
+  ],
+  "readmeFilename": "README.md"
+}
