@@ -2,7 +2,7 @@
   "name": "mindbody-sdk",
   "version": "1.0.0",
   "description": "A Node.js client for the MINDBODY API",
-  "main": "./lib/mindbody",
+  "main": "./lib/mindbody-sdk",
   "author": {
     "name": "Will Greene",
     "email": "william.greene15@gmail.com"
