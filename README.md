@@ -1,6 +1,6 @@
 # mindbody
 
-Node.js wrapper for the [MINDBODY](https://developers.mindbodyonline.com/PublicDocumentation/GettingStarted) API.
+Node.js wrapper for the [MINDBODY Public API](https://developers.mindbodyonline.com/PublicDocumentation/V6), and the [MINDBODY Webhooks API](https://developers.mindbodyonline.com/WebhooksDocumentation).
 
 # Index
 1. [Usage](#usage)
@@ -14,6 +14,7 @@ Node.js wrapper for the [MINDBODY](https://developers.mindbodyonline.com/PublicD
     - [Site](#site-list)
     - [Staff](#staff-list)
     - [User Token](#user-token-list)
+    - [Webhook](#webhook-list)
 4. [Method Examples:](#method-examples)
     - [Appointment](#appointment-examples)
     - [Class](#class-examples)
@@ -23,10 +24,21 @@ Node.js wrapper for the [MINDBODY](https://developers.mindbodyonline.com/PublicD
     - [Site](#sale-examples)
     - [Staff](#staff-examples)
     - [User Token](#user-token-examples)
+    - [Webhook](#webhook-examples)
 
 
 ## Usage
 
+### Standard Usage
+The following implementation applies for:
+* Appointment
+* Class
+* Client
+* Enrollment
+* Sale
+* Site
+* Staff
+* User Token
 ```js
 var MBO = require('mindbody');
 
@@ -36,8 +48,21 @@ var mbo = new MBO({
 });
 ```
 
+### Webhook Usage
+Please note, Webhooks API Key is different than Public API Key.
+MindBody Webhooks API documentation can be found [here](https://developers.mindbodyonline.com/WebhooksDocumentation).
+All `mbo.webhook.*` uses should be implemented with:
+```js
+var MBO = require('mindbody');
+
+// WEBHOOKS API KEY IS DIFFERENT THAN PUBLIC API KEY
+var mbo = new MBO({
+    ApiKey: 'api-key'
+});
+```
+
 ### Authenticated
-A number of methods require authorization. If you encounter 401 Unauthorized errors with your requests, generate an auth token with `mbo.oauth.token({'Username': 'USERNAME','Password': 'PASSWORD'}, callbackFunction);`. Apply this into the header of the request with `mbo.settings.authorization = data.AccessToken;`.
+A number of methods require authorization. If you would like to send requests to MINDBODY in 'BusinessMode' or using Staff credentials `mbo.usertoken.issue({'Username': 'USERNAME','Password': 'PASSWORD'}, callbackFunction);`. Apply this into the header of the request with `mbo.settings.authorization = data.AccessToken;`.
 ```js
 var MBO = require('mindbody');
 
@@ -52,7 +77,20 @@ You will need to generate your own API access tokens using the settings panel wi
 
 ## To Do
 
-* Add tests.
+* [x] Enhance documentation with extra details
+* [ ] Add tests
+* [x] Supported Methods documentation
+* [x] Add support for the following categories: 
+    * [x] Appointment
+    * [x] Class
+    * [x] Client
+    * [x] Enrollment
+    * [x] Sale
+    * [x] Site
+    * [x] Staff
+    * [x] User Token
+    * [x] Webhook
+    
 
 ## Methods List
 
@@ -134,6 +172,13 @@ You will need to generate your own API access tokens using the settings panel wi
 ### UserToken List
 * mbo.usertoken.Issue({details}, callback);
 
+### Webhook List
+* mbo.webhook.list(callback);
+* mbo.webhook.create({details},callback);
+* mbo.webhook.metrics(callback);
+* mbo.webhook.withID(#ID).self(callback);
+* mbo.webhook.withID(#ID).update({details},callback);
+* mbo.webhook.withID(#ID).delete(callback);
 
 ## Method Examples
 For all of these examples, I will be using a callback function `printResponse` as defined below:
@@ -754,4 +799,37 @@ mbo.usertoken.issue({
     'Username': '', 
     'Password': ''
 }, printClasses);
+```
+
+### Webhook Examples
+Please note, Webhooks API Key is different than Public API Key.
+MindBody Webhooks API documentation can be found [here](https://developers.mindbodyonline.com/WebhooksDocumentation).
+```js
+// https://mb-api.mindbodyonline.com/push/api/v1/subscriptions
+mbo.webhook.list(printResponse);
+
+// https://mb-api.mindbodyonline.com/push/api/v1/subscriptions
+mbo.webhook.create({
+    'eventIds': [
+        'clientSaleCreated'
+    ],
+    'eventSchemaVersion': 1,
+    'referenceId': 'GUID',
+    'webhookUrl': 'https://something.com/endpoint'
+},printResponse);
+
+// https://mb-api.mindbodyonline.com/push/api/v1/metrics
+mbo.webhook.metrics(printResponse);
+
+// https://mb-api.mindbodyonline.com/push/api/v1/subscriptions/SUBSCRIPTION
+mbo.webhook.withID('ID').self(printResponse);
+
+// https://mb-api.mindbodyonline.com/push/api/v1/subscriptions/SUBSCRIPTION
+mbo.webhook.withID('ID').update({
+    'Status': 'Active',
+    'WebhookUrl': 'https://something.com/endpoint'
+},printResponse);
+
+// https://mb-api.mindbodyonline.com/push/api/v1/subscriptions/SUBSCRIPTION
+mbo.webhook.withID('ID').delete(printResponse);
 ```

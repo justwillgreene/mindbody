@@ -1,6 +1,6 @@
 {
   "name": "mindbody-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Node.js client for the MINDBODY API",
   "main": "./lib/mindbody-sdk",
   "author": {
@@ -16,7 +16,10 @@
   },
   "license": "MIT",
   "keywords": [
-    "svod",
+    "api",
+    "mbo",
+    "mindbodyonline",
+    "mindbody online",
     "mindbody",
     "sdk"
   ],
