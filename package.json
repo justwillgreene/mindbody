@@ -12,7 +12,8 @@
     "url": "git://github.com/wmgreene/mindbody.git"
   },
   "dependencies": {
-    "request": "^2.88.0"
+    "isomorphic-unfetch": "^3.0.0",
+    "querystring": "^0.2.0"
   },
   "license": "MIT",
   "keywords": [

@@ -1,5 +1,5 @@
 # mindbody
-
+I'm working on v2 of this package that is more focused on Promise based responses.
 Node.js wrapper for the [MINDBODY Public API](https://developers.mindbodyonline.com/PublicDocumentation/V6), and the [MINDBODY Webhooks API](https://developers.mindbodyonline.com/WebhooksDocumentation).
 
 # Index
@@ -35,6 +35,7 @@ The following implementation applies for:
 * Class
 * Client
 * Enrollment
+* Payroll
 * Sale
 * Site
 * Staff
