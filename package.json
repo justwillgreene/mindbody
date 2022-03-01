@@ -1,15 +1,15 @@
 {
   "name": "mindbody-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Node.js client for the MINDBODY API",
   "main": "./lib/mindbody-sdk",
   "author": {
     "name": "Will Greene",
-    "email": "william.greene15@gmail.com"
+    "email": "itsme@justwillgreene.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/wmgreene/mindbody.git"
+    "url": "git://github.com/justwillgreene/mindbody.git"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
